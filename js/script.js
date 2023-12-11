@@ -85,3 +85,26 @@ document.ready(
         // ready function.
     }
 );
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   var codeBlocks = document.querySelectorAll('td[class^="code"]');
+
+//   codeBlocks.forEach(function(codeBlock) {
+//       var copyButton = document.createElement('button');
+//       copyButton.className = 'copy-button';
+//       copyButton.textContent = 'copy';
+//       codeBlock.parentNode.insertBefore(copyButton, codeBlock);
+
+//       var clipboard = new ClipboardJS(copyButton, {
+//           target: function(trigger) {
+//               return trigger.nextElementSibling;
+//           }
+//       });
+
+//       clipboard.on('success', function(e) {
+//           e.clearSelection();
+//           console.log('已复制到剪贴板:', e.text);
+//       });
+//   });
+// });
