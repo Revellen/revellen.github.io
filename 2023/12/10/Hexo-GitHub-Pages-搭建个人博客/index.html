@@ -248,13 +248,13 @@
 <li>调整主题配置<br>  不同的主题，提供不同的可配置项，这些内容可以在主题文件下的<code>_config.yml</code>文件中进行配置。<br>  注意，不同的主题可能不支持自动生成诸如tag、category文件夹，此时可能需要进行手动操作。具体需查看theme仓库中的readme文件。</li>
 </ul>
 <p>补充：如果不希望在后续形成GitHub仓库的关联，在这一步引入主题时，也可以选择直接下载主题源码文件并复制到themes文件夹的方式，注意命名时依然要用主题的名称来命名存放源码的文件夹。</p>
-<h4 id="1-4-本地预览"><a href="#1-4-本地预览" class="headerlink" title="1.4 本地预览"></a>1.4 本地预览</h4><p>配置完成项目文件和项目主题后，可现在本地查看生成效果。</p>
+<h4 id="1-4-本地预览"><a href="#1-4-本地预览" class="headerlink" title="1.4 本地预览"></a>1.4 本地预览</h4><p>配置完成项目文件和项目主题后，可以在本地查看生成效果。</p>
 <ul>
 <li>使用hexo生成网页：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure></li>
 <li>生成本地预览：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></li>
 <li>浏览器输入terminal返回的预览地址，即可在本地查看生成的网页。</li>
 </ul>
-<h4 id="1-5-创建一篇博文"><a href="#1-5-创建一篇博文" class="headerlink" title="1.5 创建一篇博文"></a>1.5 创建一篇博文</h4><p>需要生成静态网页的博文都应存放在项目根目录下的source文件夹中，其中,<code>_post</code>文件夹用于存放需要发布到线上文章，<code>_draft</code>文件夹用于存放文章草稿，不会生成网页。</p>
+<h4 id="1-5-创建一篇博文"><a href="#1-5-创建一篇博文" class="headerlink" title="1.5 创建一篇博文"></a>1.5 创建一篇博文</h4><p>需要生成静态网页的博文都应存放在项目根目录下的source文件夹中，其中,<code>_posts</code>文件夹用于存放需要发布到线上文章，<code>_draft</code>文件夹用于存放文章草稿，不会生成网页。</p>
 <ul>
 <li>打开terminal，进入项目根目录：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd path/to/root/folder</span><br></pre></td></tr></table></figure></li>
 <li>创建一个博文文档（不特别声明layout时，新生成的文档会被存放在<code>_post</code>文件夹中）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
@@ -347,6 +347,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2023/12/11/10%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88Hexo-GitHub-Pages%EF%BC%89/">10分钟搭建个人博客（Hexo + GitHub Pages）</a>
             
             
             <a class="next" rel="next" href="/2023/12/07/try-create/">try</a>
