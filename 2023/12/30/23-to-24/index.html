@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Revellen">
+
+
+
+
+
+<title>23 to 24 | Revellen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Non-Stop</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Non-Stop</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">23 to 24</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Revellen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Dec 31, 2023&nbsp;&nbsp;00:30:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="23年"><a href="#23年" class="headerlink" title="23年"></a>23年</h1><p>这应当是我除了UK那段时间之外，成长最大的一年。<br>12.29我在回家的高铁上，有种幸福得要溢出来的感觉：手头的工作都好好地告一段落，生命中重要的朋友都有亲密而日常的联系，有一个很好很好很好的师父，而我对自己的觉察、理解、照顾也达到了以前从未有过的深度。这些我热爱的，都在给我非常好的能量，而我也逐渐有了决心和信心能够持续下去。我充满了感恩。</p>
+<p>这一年，我和自己彻底和解了，不再拧巴，变得坦然，也变得勇敢，“接受所有事发生”。曾经我被告知我的敏感是错的，是麻烦的，是会招致问题的。类似地，还有我的很多其他特质。但做产品这件事，让我为它们找到了意义，it all makes sense。我也爱我身上那些无意义。那些没有回答的发问，那些没有记录的眼泪，那些没有人知道的纠结，也都是我的，只要没有伤害别人，它们都一样美好。<br>这一年，我实践了头两年从书上学来的概念和方法，也依据实际效果进行优化，渐渐有了自己的产品方法论雏形。我会担心自己的模式固化，影响自己所能驾驭的产品形态。但好在，我发现我只对“做好产品”这一件事很坚定，方法论上，虽然有，但不执着。<br>这一年，我和团队完成了一个新系统的上线，这是我负责的第一个“产品”，它不够好，但多少是个起点。希望下一个，不仅能在业务场景上自循环，还能在商业上形成飞轮。<br>这一年，我拍了三千多张照片，满意的不过40张。<br>这一年，我开始改变生活方式，调整饮食结构，养成了健身习惯，学会了游泳。</p>
+<p>年中的时候，经历过长达2周的崩溃，那一阵密集地反思自己，然后对世界建立新认知。<br>我一直以来的有限性：鲁莽地把事物分为感兴趣和不感兴趣两部分，将不感兴趣的部分压缩成世界的背景，允许它们在玻璃房的另一边随意变动，对感兴趣的部分不断探索不断折腾。可是，“感兴趣”这个偏好，并不完全属于我。“有趣”这个断言，也由此变得可疑。<br>原有的方法，是为了保持稳定和舒适，而心变得强大后，<em>stay open, stay sensitive</em>才能真正让我舒适。</p>
+<p>前一阵想起psychology principles课上学的一个概念<code>consensus bias</code>，可以译为“共识偏误”，含义是错误地将自己的观点、信念、特征或行为认为是被广泛认同的。<br>之所以想起，是因为我在复盘自己在产品实现、客户对接以及团队协作方面的工作时，发现自己的出发点非常简单：换位思考。这是一个写在小学思想品德课本里的思维模型，可我观察到的很多人似乎并不会这样，或者说他们所采取的策略，并没有帮助他们推导出正确的结果。<br>这两个放在一起，似乎就有解了：换位思考是把自己当成别人，而不是把别人当成自己。思考方向错误，观察其行为结果，会发现那近乎是一种傲慢。难以阅读的文档、难以理解的话、难以使用的产品、难以持续的合作，往往都是起初思考的时候就错了。</p>
+<h1 id="24年"><a href="#24年" class="headerlink" title="24年"></a>24年</h1><blockquote>
+<p><strong>保持空杯，保持乐观。持续学习，持续输出。</strong></p>
+</blockquote>
+<p>其实每年对新年的期待都差不多，只是具体要做的事会有差别。<br>如果说有什么在24年格外想有，应该是拥有输出的能力和习惯。观点、实验性的产品、视频、教程文档、知识整理，甚至是模型，只要能nudge我不断学习和积累，我都想试试。<br>另一个，是拥有商业上的理解力和初步具有商业模式上的架构能力。我希望我的产品，能够以合适的、可持续的方式成长下去。</p>
+<p>多多出门，多多探索，多多拍照。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Revellen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2023 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E9%9B%B6%E6%95%A3/"># 零散</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/12/17/%E8%AF%BB%E4%B9%A6%E8%AE%B0%E5%BD%95-%E3%80%8A%E5%8D%87%E7%BB%B4%EF%BC%9A%E4%BA%89%E5%A4%BA%E4%BA%A7%E5%93%81%E8%AE%A4%E7%9F%A5%E9%AB%98%E5%9C%B0%E7%9A%84%E6%88%98%E4%BA%89%E3%80%8B/">读书记录 -《升维：争夺产品认知高地的战争》</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Revellen 
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
