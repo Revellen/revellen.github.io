@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Revellen">
+
+
+
+
+
+<title>读书记录-《底层逻辑2》 | Revellen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Non-Stop</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Non-Stop</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">读书记录-《底层逻辑2》</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Revellen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Jan 07, 2024&nbsp;&nbsp;20:42:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <blockquote>
+<p>我们把世间万物放在“笛卡尔坐标系”中，理解世间财富的“方差”，控制独立的随机事件以减少“标准差”，不断用“贝叶斯定理”提升成功的“概率”，用“四则运算”管理财务，追求“指数增长”，在“幂律分布”的世界中求得自己在“统计”学意义上的成功。</p>
+</blockquote>
+<p>其实并不爱读名字很夸张的书，这本就是典型，因此虽然早就听说，但一直没有读。<br>这本书的核心是用数学思维理解商业世界的逻辑。读的时候令人想起上学时有那么几年，因为喜欢明确的数字和逻辑带来的清晰视野，而非常喜欢数学。</p>
+<p>takeaways：</p>
+<ul>
+<li>“加减乘除”<ul>
+<li>商业世界中，不同的事物会在相同或不同维度上形成竞争或合作的关系，这就形成了商业世界的加减乘除运算：加法（同维合作），减法（同维竞争），乘法（异维合作），除法（异维竞争）。</li>
+<li>这样的基础运算可以用来解释诸如团队分工协作（异维合作）、使用ROI评价产品线（异维竞争）的逻辑。</li>
+<li>加减比较的是具体额度，而乘除比较的则是倍数（比例、权重、杠杆），需要学会灵活地根据关系选择维度，拆解关键指标，得到关于合作或竞争的公式，做出针对性的决策，以最终实现目标。</li>
+</ul>
+</li>
+<li>维度<ul>
+<li>事物不只是一条线上的两个点，还可能是一个体中的两个面，或是更高维度上的不同表达…能够在越多维度上理解世界和事物之间的关系，理解商业就越深。</li>
+<li>书中将商业世界的维度划分为0到6维：<img src="/images/240107-01.PNG"></li>
+<li>升维思考：<u>理解事物时，跳出静态的描述，提升观察的维度，分析它们的发展路径、商业模式、研发和创新方向，并把这些都放在时间轴上观看，通过分析其行为和成功的概率判断未来的演进结果。</u></li>
+<li>降维执行：通过升维思考完整地理解事物后，再回到具体的执行维度进行策略的制定。</li>
+</ul>
+</li>
+<li>指数增长<ul>
+<li>行为前后形成关联，后一步站在前一步的基础上，使得“昨天的收获能够连本带利变成今天的本金”，也即形成指数增长。</li>
+<li>每个个人或企业所拥有的生产要素不一样，有些生产要素有天然的前后关联属性（如资本、科技、数据），有些则没有（如劳动力、土地）。</li>
+</ul>
+</li>
+<li>幂律分布<ul>
+<li>由于生产要素的不同，经过相同的时间，得到的财富总额（“幂”）不同。指数增长必然带来幂律分布，而指数增长的长期作用也带来了公平和效率的抉择问题。</li>
+<li>五大生产要素都需要进行市场化交易，相关的市场也就必须存在。</li>
+<li>公平是收入分配相对平等，效率则指以最小投入获得最大产出。<ul>
+<li>生产要素在自由交易的市场上会流向效率高的一方（生产要素的一次分配），效率高的一方因此获得更高收益，社会整体财富增加。</li>
+<li>通过失业救济、再就业培训、减免低收入人群的税费、提供更多便宜的社会服务甚至现金补助等手段将部分财富分给效率低的对象（生产要素的二次分配）。</li>
+<li>一次分配负责效率，二次分配负责公平。此外还有三次分配，包括慈善、捐赠等形式。</li>
+</ul>
+</li>
+<li>不同的行业，其产生价值的核心生产要素是否有前后关联性，决定了该行业各玩家的收入呈现幂律分布还是正态分布。</li>
+<li>那么行业就决定了参与者要竞争的要素了吗？我倒认为不一定。以行业来理解企业，或者判断自身，会限制自己，此时更应该把行业理解为商业模式，而一家企业的商业模式可以很复杂，也可以横跨多个行业。<u>关注使得商业模式成立的核心要素，关注它们的获取、组合和产生价值的方式，以此来设定策略</u>。</li>
+<li>依据自己的禀赋，选择和设计商业模式。</li>
+<li>长期主义：长期主义不等于死磕（胜者的死磕叫坚持，败者的死磕叫固执，这是以结果论英雄）。做事之前要确定自己在对的方向上。<u>做正确的事，持续不断地做正确的事，坚持住，等待奇点到来。</u></li>
+</ul>
+</li>
+<li>标准差<ul>
+<li>平均是描述群体共性的数学概念，方差和标准差是描述差异性的数学概念。非线性世界里，研究群体的差异性有时比研究共性更重要。</li>
+<li>标准差体现离散性或稳定性。“靠谱”、“质量好”、“多样化”，其实都是标准差的大或者小。<ul>
+<li>缩小该缩小的差异性：缩小差异性，即保持整体的稳定、可理解、可预测。例如：为了提升质量，需要通过严格的流程控制，来缩小标准差，从而控制成本。</li>
+<li>放大该放大的差异性：放大差异性，即提高波动范围，提升活力。例如：在创业初期或转型期，招揽差异性较大的员工，提升整个组织的活性，从而更快进行方向选择和策略验证。</li>
+<li>放大或缩小差异性时，应注意控制范围：企业内，薪酬差异（“斗志指数”）的存在可以激励员工，但是过大的薪酬差异则会导致两级分化严重进而导致团队内的严重对立。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>概率和统计<ul>
+<li>“概率是针对个体的概念，用来衡量一件事情将要发生的可能性的大小。对于好的事情，概率衡量的是运气的好坏；对于坏的事情，概率衡量的是风险的大小。”“统计是针对群体的概念，用来计量一群样本满足条件的比率的大小。对于多的事情，统计计量的是普遍的幅度；对于少的事情，统计计量的是稀缺的程度。”</li>
+<li>行为×概率&#x3D;结果。要获得好的结果，要不断地做正确的事，不断验证和积累，提高成功的概率。</li>
+<li>创业就是管理概率：从数学本质上来说，现代投资机构所采用的ABCD轮投资模式是用条件概率换取更大的创业或投资成功率<ul>
+<li>天使轮投资：排除产品风险。也即创业者有想法、有实践能力、能做出来产品。</li>
+<li>A轮：排除收入风险。创业者角度来说，就是产品能卖出去，能产生收入。收入模型回答谁会付钱、为什么付钱、付多少钱以及有多少人付钱。</li>
+<li>B轮：排除盈利风险。构建盈利模式的验证是指在单点（一定地域范围或者人群），掌握核心资源，控制成本结构，理顺关键流程，建立围绕核心业务的支持系统，验证自己的商业模式能够完全走通。也即：不仅能创造收入，还能产生盈利。</li>
+<li>C轮：排除运营风险。单点跑通后，就要尝试扩张商业模式，通过公司运营能力的提升，提升市场份额。单点模式能否扩张，迅速扩大的团队能否有效管理，直接体现了运营能力。很多企业都死在这一轮。</li>
+<li>D轮投资人大多是为上市做准备的投资银行等机构。经过规范化、股改、业绩冲刺，创业公司终于满足了上市的要求，上市之后，公司的股票也从在一级市场交易变为在二级市场交易。</li>
+</ul>
+</li>
+<li>正确的事，是成功概率大的事。这似乎使得整个等式又绕回来了。如何知道自己做的事成功概率大呢？没办法知道，只能不断地试，试的过程中使用贝叶斯定理不断纠正。</li>
+<li>分析市场时，要避免一些基础的统计错误：基本比率谬误、辛普森悖论和幸存者偏见。</li>
+</ul>
+</li>
+<li>博弈论和决策<ul>
+<li>前面的所有数学理论以及其对应的商业意识，不仅适用于对自身的分析和构建。在理解对手和队友时，要同样站在半空，以同样复杂的维度和逻辑来进行理解和分析，从而找到合作或竞争时的最优解。</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Revellen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2023 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E8%AF%BB%E4%B9%A6%E8%AE%B0%E5%BD%95/"># 读书记录</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/12/30/23-to-24/">23 to 24</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Revellen 
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
