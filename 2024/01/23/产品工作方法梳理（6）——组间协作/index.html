@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Revellen">
+
+
+
+
+
+<title>产品工作方法梳理（6）——协作 | Revellen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Non-Stop</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Non-Stop</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">产品工作方法梳理（6）——协作</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Revellen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Jan 23, 2024&nbsp;&nbsp;22:13:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%A4%8D%E7%9B%98/">复盘</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="数据侧"><a href="#数据侧" class="headerlink" title="数据侧"></a>数据侧</h1><p>一些项目中，数据和数据服务是作为整个解决方案的一部分打包出售的，此时产品和数据的关系就变得极为密切：产品构建好了躯体和血管，数据是流淌的血液，双方都应该理解和配合彼此的需求，才能让整体运转起来。<br>举个例子，当一份数据经过数据的加工治理灌入系统库表，开放用户使用，用户的使用会对数据进行一些修改，那么后续数据在进行维护时，就应当考虑到不同更新方式会对系统产生的影响。<br>再来个例子，当一份数据依赖数据侧的维护，那么可能在设计系统库表时就需要预留一些字段来供数据侧取数使用。</p>
+<p>总结来说，与数据侧的协同应该：</p>
+<ol>
+<li><strong>明确工作边界</strong>：开展工作前，先明确工作边界，哪些部分的数据需要数据侧进行维护，哪些部分不需要。不至于后期出现多方都维护同一份数据，或者更糟，数据没有维护的人的情况。</li>
+<li><strong>给出的数据需求应当清晰，可执行</strong>：给出数据需求前，产品应当对数据最终呈现的效果有明确的期待和认知，以终为始，逆推出以当前的资源，需要做怎样的加工，有哪些地方需要格外注意。当给出数据需求时，应当确保对方知道想实现的效果，如果有必要，可以拆分步骤。</li>
+<li><strong>产品侧的库表调整和业务逻辑调整，有必要时及时同步数据侧</strong>：产品迭代时，可能会发生库表变动，或者业务逻辑变动，应当本着相关方周知的原则，同时告知数据侧的同事。</li>
+</ol>
+<h1 id="项目侧"><a href="#项目侧" class="headerlink" title="项目侧"></a>项目侧</h1><p>由于组织架构的不同，项目和产品可能会存在项目统筹-产品分治，或产品作为主干，而项目负责分支落地，两种关系。<br>而产品侧对项目侧的支持无外乎<strong>按时保质交付</strong>。这就决定了，初期对接完需求后，产品应当给到项目以下支持：</p>
+<ol>
+<li><strong>相对准确的工时估计和优先级排序</strong>。收到需求或者梳理完成后，产品侧应当能够比较准确地给出工时估计，并且给出开发优先级。</li>
+<li><strong>进度同步</strong>。需求进入开发阶段后，可以在有问题或者需要额外支持的节点及时同步进度和需求，并且如果开发期比较集中，可以按周进行进度同步（产品的周例会也可以邀请项目一同参加）。</li>
+<li><strong>交付前交流</strong>。开发完成后，需要小范围地和项目同步开发成果，接收反馈，如果有问题，及时调整。</li>
+</ol>
+<h1 id="售前及商务侧"><a href="#售前及商务侧" class="headerlink" title="售前及商务侧"></a>售前及商务侧</h1><p>售前和商务，是公司中离外部商机最近的人，他们所得到的信息的完整性，是产品向外走的基数，他们得到的信息越完整、得到的支持越多，产品越有可能有更多的落地成果。<br>产品在有mvp之后，就应当着手准备售前相关的介绍文档、概算文档、可选服务清单等文档。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Revellen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2023 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E4%BA%A7%E5%93%81/"># 产品</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/01/23/%E4%BA%A7%E5%93%81%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95%E6%A2%B3%E7%90%86%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94%E5%86%85%E9%83%A8%E6%8E%A8%E4%BB%8B%E5%92%8C%E6%96%87%E6%A1%A3%E6%B2%89%E6%B7%80/">产品工作方法梳理（5）——内部推介和文档沉淀</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Revellen 
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

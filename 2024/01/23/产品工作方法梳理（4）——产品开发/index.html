@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Revellen">
+
+
+
+
+
+<title>产品工作方法梳理（4）——产品开发 | Revellen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Non-Stop</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Non-Stop</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">产品工作方法梳理（4）——产品开发</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Revellen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Jan 23, 2024&nbsp;&nbsp;22:08:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%A4%8D%E7%9B%98/">复盘</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <blockquote>
+<p><strong>always bear in mind</strong>：<br>开发人员的工作从来不是单纯地画页面、写工程文件。<br>实际上，参与项目的每一个人都应当了解和理解业务，这是所有参与人的责任。产品经理有义务确保这一点的落地。</p>
+</blockquote>
+<h1 id="共同概念构建"><a href="#共同概念构建" class="headerlink" title="共同概念构建"></a>共同概念构建</h1><p>正式开工前，就应在项目组内构建共同的概念和目标。<br>开发人员同其他职能的项目同事一样，需要对项目的需求背景、业务范畴、产品目标有清晰的认知：知道开发的产品是给谁用、何时何地用、用来做什么。产品价值的实现，依赖于共识。</p>
+<p>共同概念构建的时机未必发生在进入开发阶段时。实际上，一旦决定开发新的产品，进入产品探索和产品定义阶段，共同概念就会因为需求和技术研究的深入而形成。进入开发阶段后，团队纳入新成员时，都应当被及时同步，力求所有参与人都on the same page。</p>
+<h1 id="规则构建"><a href="#规则构建" class="headerlink" title="规则构建"></a>规则构建</h1><p>确定开发模式、成员及分工、协作及进度管理工具<br>一般来说有瀑布式和敏捷式两种产品开发模式，两者各有优点。而所在行业不同、企业内协同习惯不同、业务不同，产品类型（自主创新产品、定制产品）不同，项目节奏不同，这就导致没有绝对可以拿来就用的开发模式，产品经理应当在了解项目属性、干系人诉求之后，选择或者构建合适的开发模式（或者说项目节奏）</p>
+<p>明确目标之后，需要及时就工作中关键的部分建立规则：</p>
+<ol>
+<li>交付节奏：应拿出规划（<strong>路线图</strong>）</li>
+<li>成员及分工：明确团队的构成及每个人的分工</li>
+<li>写作及进度管理工具：需求和bug都应当被归集整理起来，有详细的描述（描述内容可以在具体的文档里）并标记责任人、deadline、所属迭代。应当从初期就有管理平台，如果没有平台软件条件，也至少应当持续维护在线表格，使得任务、职责、时间都是清晰的。</li>
+</ol>
+<h1 id="需求评审"><a href="#需求评审" class="headerlink" title="需求评审"></a>需求评审</h1><p>需求评审不是整个开发阶段的前期事项，而是产品整个生命周期里会不断进行的工作，每一个需求，都需要经过需求评审，在团队内充分讨论后，再进入开发。<br>需求评审的需要明确3块内容：做什么需求，做成什么样，怎么做。</p>
+<ol>
+<li>做什么需求：每次会前需要完成待评需求的梳理（原型和文档），列出清单，简要介绍业务场景和解决方案逻辑，附上文档链接，标注重要性或优先级，有特殊的要求也可以一起标注上。将清单提前发给参会人员。复杂的需求可以在会前先和技术leader进行讨论。</li>
+<li>做成什么样：给定场景，应当有很多种解决方案，评审时应当拿出最有价值、最可行、最可用的方案，有必要的话，可以说明为什么在众多选项中，选择了当前这种，并且强调哪些地方是需要注意的。</li>
+<li>怎么做：确定产品方案有价值、可用、可行后，需要确定技术方案，包括表结构怎么设计、接口怎么设计、ETL怎么设计等等。这个环节可能会涉及页面的微调，产品需要快速评估是否可以进行调整。</li>
+</ol>
+<blockquote>
+<p>需求评审，评审的是需求的价值和解决方案，而不是做需求的人。每个人在这个过程里都应当竭力保持客观，围绕产品目标，进行设计、讨论和执行。</p>
+</blockquote>
+<h1 id="进度把控"><a href="#进度把控" class="headerlink" title="进度把控"></a>进度把控</h1><p>产品开发的进度受到多种因素影响：需求梳理是否到位、评审时是否完整充分讨论问题、开发资源是否充足，开发的流程会存在先后和并发两种，因此前序任务是否及时完成，开发人员能力是否足够等等，都会影响进度。<br>产品应当在梳理、评审、开发、测试、上线的每个阶段都做到细致、及时：</p>
+<ol>
+<li>梳理：做需求时，应力求逻辑严密、原型完整、表述明确，避免后续的需求变更、修正。<strong>需求一旦进入开发阶段，就尽可能地不去做大的更改。</strong></li>
+<li>评审：评审时，明确关键点，将关键问题讨论清楚，并在团队内拉齐</li>
+<li>开发：需求进入开发阶段，并不意味着可以撒手不管了，除非是思维及其严密、文档写得滴水不漏的产品，开发才有可能可以直接执行，多数时候，进入开发阶段，开发还会有各种细节需要和产品确认打磨（当然，前期工作如果够细，这些都会相应减少），因此在这个阶段需要做到及时响应和及时调整</li>
+<li>测试：不需要等到功能全部做完了，再做测试，页面画完了、接口逐渐接入了、部分功能上线了，测试工作就可以开始了，这样测出来了问题，开发通常可以很快地修正，等到全部功能做完之后，再进行一两轮的全盘测试，这样基本能够保证在功能开发完成的两天内完成所有测试和bug修复工作（两天的估计是基于这9个月的开发期的经验）</li>
+<li><strong>项目侧演示</strong>：项目侧演示这一环节不在产品开发的一般阶段里，但是对于定制项目而言，这是一个十分有必要的环节。当功能达到产品验收要求后，需要邀请项目侧的同事开会，同步进度（包括需求的实现逻辑、特殊处理的地方、需要和客户解释的点、后期运营的注意点）并进行功能演示。这是功能正式上线前，项目侧唯一的修正机会，而这个机会对产品和对项目都很重要。</li>
+<li>发布上线：功能上线前，需要对照checklist（实体or非实体均可，但产品本人要十分清楚），保证功能及其依赖项没有问题。功能上线后，及时到线上环境进行测试，有问题的当天提交bug。</li>
+</ol>
+<p>以上是在每个节点，产品把产品工作从50分做到80分甚至90分的要点。<br>除了产品自己的行为之外，还有一些团队管理手段帮助推进进度：</p>
+<ol>
+<li>每日短会：开发期的每天早上，需要通过15分钟以内的短会进行组内信息交流。会议的目的是同步进度，提出当前的卡点和问题，是否需要其他人的协助等。15mins是上限。站会是一种控制会议时长的手段。</li>
+<li>每周例会：每周需要进行例会，例会的目的是及时总结、重置。例会内容包括当周开发内容、存在的问题、进度是否符合计划、下周计划等。</li>
+</ol>
+<p><strong>开发进度是团队协作的结果（不考虑资源变动和外界依赖），整个过程里，会有各种可能发生的事，产品的任务是尽力让团队的每个人专注、高效。</strong></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Revellen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2023 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E4%BA%A7%E5%93%81/"># 产品</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/01/23/%E4%BA%A7%E5%93%81%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95%E6%A2%B3%E7%90%86%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94%E5%86%85%E9%83%A8%E6%8E%A8%E4%BB%8B%E5%92%8C%E6%96%87%E6%A1%A3%E6%B2%89%E6%B7%80/">产品工作方法梳理（5）——内部推介和文档沉淀</a>
+            
+            
+            <a class="next" rel="next" href="/2024/01/23/%E4%BA%A7%E5%93%81%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95%E6%A2%B3%E7%90%86%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1/">产品工作方法梳理（3）——原型设计</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Revellen 
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

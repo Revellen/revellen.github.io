@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Revellen">
+
+
+
+
+
+<title>产品工作方法梳理（2）——产品规划 | Revellen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Non-Stop</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Non-Stop</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">产品工作方法梳理（2）——产品规划</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Revellen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Jan 23, 2024&nbsp;&nbsp;21:57:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%A4%8D%E7%9B%98/">复盘</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <blockquote>
+<p>产品规划的目的，是提炼要实现的目标和要做的事，从中找出重点，并将其转换成产品功能。<br>产品规划的步骤在开发阶段之前，但这并不意味着开发人员在这个阶段就不用参与。事实上，产品探索、产品规划的阶段，都至少应有一名有较多经验的开发人员参与，保证方案可行并且预估方案风险。</p>
+</blockquote>
+<h1 id="需求梳理"><a href="#需求梳理" class="headerlink" title="需求梳理"></a>需求梳理</h1><h2 id="最小可行产品"><a href="#最小可行产品" class="headerlink" title="最小可行产品"></a>最小可行产品</h2><p>在经过需求挖掘后（或者和客户讨论过业务需求后），一般会有一个需求清单，清单上也标记了重点，很多时候，在获得这份清单之后，产品经理就开始着手“翻译需求”（需求–&gt;功能）了，力图快而全地梳理出所有功能点并推进开发。<br>而实际上，无论是定制产品还是自主洞察的产品，最小可行产品（mvp）都是很有必要的。<br>定制产品：定制产品的开发节奏一般建议选择敏捷迭代，从定义一个基础可行的产品开始做，逐步地优化和添加客户想要的功能，相比于翻译后直接开工，按照”需求重要性“进行开发，后再调整，按照”功能重要性“定义和开发出一个mvp，验证产品可行性，再做拓展，要更合理。</p>
+<h2 id="功能结构梳理（戳点）"><a href="#功能结构梳理（戳点）" class="headerlink" title="功能结构梳理（戳点）"></a>功能结构梳理（戳点）</h2><ol>
+<li>需求分析：基于需求挖掘阶段得到的所有成果，进行深入分析，明确需求的价值和需求满足的优先级<ol>
+<li>需求有时不会在之前谈及的范围内，甚至不是显性的功能需求，产品经理需要挖掘出不同场景和目标下，用户会产生的需求，包括事务达成上的和心理上的</li>
+<li>想象自己是用户和客户，置身于业务场景，思考核心诉求和交互路径–&gt;<span style="background:rgba(240, 200, 0, 0.2)">输出业务流程图</span></li>
+</ol>
+</li>
+<li>设计功能结构：基于需求分析结果，设计功能和系统结构，使得需求在系统中总有回应。设计时应知道每一个功能点为什么做、做什么、识别重点、难点、风险点–&gt;<span style="background:rgba(240, 200, 0, 0.2)">输出功能结构图</span><ol>
+<li>为什么做：整个产品需要满足怎样的需求或者实现怎样的目标，尝试拆解目标</li>
+<li>做什么：为目标设计功能框架，以及每个功能需要实现的内容，整体又能提供怎样的能力，哪些是基础，而哪些又是上层建筑，或者说，区分痛点、痒点和不痛不痒点，抓准核心业务</li>
+<li>识别重点、难点、风险点：从功能设计和功能价值脱离开，判断整体工作中哪些内容是需要仔细梳理的，哪些部分可能需要多预留时间讨论和技术攻关的，哪些部分会因为依赖或者”可预见的因素“而变得不可用</li>
+<li>一个很好的思路锚点：高内聚、低耦合</li>
+</ol>
+</li>
+<li>为用户设计功能细节：从 谁用、什么场景用、用来做什么 出发来考虑功能（够用也要好用）<ol>
+<li>谁用：用户是谁，他们所在的组织架构是怎样的，他们的年龄、硬件、认知有怎样的共同倾向和区别</li>
+<li>什么场景用：用户需要用这个产品解决什么问题，他们使用的环境是怎样的，这个环境中有什么因素会影响这个过程</li>
+<li>用来做什么：用户需要这个产品如何满足他们的需求</li>
+<li>这一点其实应该划分为用户体验设计的部分，但团队中并不一定有这样的成员，而日后原型阶段再考虑用户体验又有些晚，所以放在这个部分</li>
+</ol>
+</li>
+<li>设计高可用的权限体系和权限控制方法 –&gt;<span style="background:rgba(240, 200, 0, 0.2)">输出权限结构图&#x2F;表</span><ol>
+<li>权限体系和权限管理模块，是功能架构中最为特殊的部分，它的常用人群、影响范畴和其他的系统功能大相径庭</li>
+<li>权限包括功能权限和数据权限，它决定了用户在这个系统中所能获取的资源以及所能做出的行为。如果过于简单，会不够安全，如果过于复杂则会对项目、运营乃至用户带来很大的压力</li>
+<li>需要在充分了解和理解用户和业务场景后进行设定，梳理权限结构，保证权限点之间不粘连、不冲突</li>
+</ol>
+</li>
+</ol>
+<h2 id="非功能需求梳理"><a href="#非功能需求梳理" class="headerlink" title="非功能需求梳理"></a>非功能需求梳理</h2><p>非功能需求包括安全性需求、性能需求等，它们不是功能，但是很可能会影响系统功能。因此，其中部分需求需要在功能设计的时候就一起考虑进去。<br>安全性需求例如存储加密&#x2F;脱敏，传输加密&#x2F;脱敏等<br>性能需求例如并发量、吞吐量等</p>
+<h2 id="版本规划和需求定级"><a href="#版本规划和需求定级" class="headerlink" title="版本规划和需求定级"></a>版本规划和需求定级</h2><ol>
+<li>功能点及功能结构确定后，就需要按照功能的重要性规划版本和开发优先级<br> 优先级分为P0、P1、P2，重要性依次降低：P0-核心功能、P1-特点功能、P2-额外功能</li>
+<li>版本规划和优先级排序不总是依据功能重要性，资源是否充足、公司发展目标、业务方的需求等，都是影响优先级的因素</li>
+</ol>
+<h1 id="解决方案梳理"><a href="#解决方案梳理" class="headerlink" title="解决方案梳理"></a>解决方案梳理</h1><p>为保证需求的满足，仅仅设计有各种功能的产品在很多场景中不足够，还需配合相应的解决方案。<br>解决方案可以是面向用户的额外的插件、API服务、数据治理服务、表单服务等，也包括为了支撑系统运转而需要日常进行的工作方案。<br>梳理解决方案时需注意：</p>
+<ol>
+<li>梳理系统侧的解决方案，应当充分与开发和数据以及其他参与建设的成员沟通讨论，确定问题点和风险点<ol>
+<li>例如，数据在更新数据时，有哪些语句和操作是不能执行的，哪些字段需要格外注意，处理完成之后是否需要再加一些固定步骤</li>
+</ol>
+</li>
+<li>解决方案应明确地、准确地记录记录在文档中，按照问题场景、涉及数据进行分类</li>
+</ol>
+<h1 id="底层结构设计（平面图）"><a href="#底层结构设计（平面图）" class="headerlink" title="底层结构设计（平面图）"></a>底层结构设计（平面图）</h1><ol>
+<li>底层设计应当包括了系统所有的技术细节，例如数据库选择、服务器配置等等。而落到产品侧的工作里，更多的是<strong>库表设计</strong>，如果有余力或有必要，还可以包括<strong>接口设计</strong>。</li>
+<li>这个部分不一定能够自己独立完成，很多时候要和技术多讨论</li>
+<li>设计时：<ol>
+<li>从基础的核心的功能开始设计，设计完成后，将设计好的底表放到相关的业务场景中，评判当前设计是否足够支撑，如果后续要调整，有多大空间可以调整</li>
+<li>估计业务的体量，包括使用人数、核心场景、数据量等，基于这些决定表要怎么建，关联关系要如何处理，</li>
+</ol>
+</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Revellen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2023 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E4%BA%A7%E5%93%81/"># 产品</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/01/23/%E4%BA%A7%E5%93%81%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95%E6%A2%B3%E7%90%86%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1/">产品工作方法梳理（3）——原型设计</a>
+            
+            
+            <a class="next" rel="next" href="/2024/01/23/%E4%BA%A7%E5%93%81%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95%E6%A2%B3%E7%90%86%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E5%89%8D%E7%BD%AE/">产品工作方法梳理（1）——前置</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Revellen 
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
