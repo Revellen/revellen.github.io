@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Revellen">
+
+
+
+
+
+<title>LLM应用折腾笔记（1） | Revellen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Non-Stop</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Non-Stop</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">LLM应用折腾笔记（1）</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Revellen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Mar 25, 2024&nbsp;&nbsp;00:00:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%95%99%E7%A8%8B-%E8%B8%A9%E5%9D%91/">教程&踩坑</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h3 id="一些基础认知"><a href="#一些基础认知" class="headerlink" title="一些基础认知"></a>一些基础认知</h3><ul>
+<li>AI并非近十年才有的技术。可以说从构造出最早的带有自我调节机制的工具系统开始，AI探索的齿轮就开始转动了。</li>
+<li>AI应用的终点是和这地球上的其他生物相同的存在。</li>
+<li>LLM是深度学习模型的一种，而深度学习是机器学习的一个分支。<ul>
+<li>机器学习实质上是让机器从知识中学会一些规律，进而应用。而众多的算法也都指向一个目标：让机器学会知识并且利用这些知识产生对应的行为。</li>
+<li>深度学习的发展，依赖对人脑的研究、大数据应用技术以及互联网的进步。它的逻辑实际是通过分层构造并灌入足量的数据，进而期待“智能的涌现”。</li>
+<li>与人类知识的类型对应，深度学习的主要方向包括图像识别、语言识别和自然语言处理等。而LLM则是自然语言处理的其中一个模型。</li>
+</ul>
+</li>
+<li>构造智能体，人类仅有有限的能力，但智能体已然以自己的方式在成长了。<ul>
+<li>之所以有图像识别、语音识别和自然语言处理这三类（当然语言中还有特殊一些的机器语言、生化表达式，但其实也都是文本而已），是因为人类社会的知识，基本都只能以这三种方式存储下来。这就意味着，如果无法被感知，或者无法被记录，或者记录的与感知的存在偏颇，就无法形成可供机器学习的知识。</li>
+<li>构造智能体的方式和逻辑，受到人类对自己的理解的限制。构造智能体的原始出发点，是人希望将自己从枯燥、危险、学习成本高的劳动中解放出来，这就直接决定了这整个过程与造一个假象没什么区别。假象造得多好，依赖于对本体的认知。</li>
+<li><span style="background:rgba(240, 200, 0, 0.2)">智能体这一概念一经创造，与之关联的数据、工具、资本，都成了它的养料，它已经是和人类共同进化的存在。除非全人类达成停止投入的共识，智能体将一直进化下去。</span></li>
+</ul>
+</li>
+</ul>
+<h3 id="对LLM理想应用场景的设想"><a href="#对LLM理想应用场景的设想" class="headerlink" title="对LLM理想应用场景的设想"></a>对LLM理想应用场景的设想</h3><p>LLM的特殊并不在技术本身，而在于，<span style="background:rgba(240, 200, 0, 0.2)">它以语言打破了机器与人类、虚拟与现实的边界。</span><br>人类社会中，语言是这样重要的存在。它先于文字产生，也先于知识产生，它诞生于社会也深刻影响社会。会表达、会记录的人，将语言以文字的方式记录下来。由于互联网的发展，这些记录得以被传播和积累并用来训练AI模型。</p>
+<p>曾经有过一个很有趣的问题：<span style="background:rgba(240, 200, 0, 0.2)">你做梦的时候用的是什么语言？</span><br>这其实有暗含另一个问题，大脑思考时的生物信号，是对应语言的吗？由这个问题又可以延伸得到其他同样有意思的问题：通过不同感官得到的关于这个世界的信息是如何记录的？它们有互相融合统一到同一个“语言”下吗？如果只依赖语言文字进行记录，有多少信息或知识会损失？多模态的AI记录，在什么层面融合并通信才能真正达到人类一样的知识获取、加工和运用？<br>由这些回到LLM应用就会发现，LLM与其说是一个大脑，不如说是大脑的一个脑区。这个脑区表现得如何，一是脑区发育情况（神经网络构造）一是接收的信息（数据）。可能要再过一阵才能期待它迁移学习的表现，但可以也应该期待它在文字理解、检索、总结、推理上的表现。<br>众多LLM应用的UI上发生的事，看上去是简单的对话理解和生成，实际上LLM在中间做的是检索和转译，转译的双方可以是人类的不同语种、机器的不同语言，更重要还有人类语言与机器语言。语言的核心价值——交流——借着LLM完美地体现出来了。<span style="background:rgba(240, 200, 0, 0.2)">有了无界的交流，才使影响、控制能够在人类和机器这两类“生物”之间相互渗透。</span><br>这也就是为什么LLM从技术的角度评价起来没什么特殊，但却能产生这么大的影响：它可以是大脑，也可以仅仅是个插口。<br>因此，LLM的应用场景绝不只是人机交互这一环节。但受模型能力、行业规范的限制，让它在涉及任务理解和处理的场景下进行单点或多点嵌入是比较稳妥的选择。</p>
+<h3 id="折腾Roadmap"><a href="#折腾Roadmap" class="headerlink" title="折腾Roadmap"></a>折腾Roadmap</h3><p>基于一定的行业背景（对数据治理、业务场景、产品的理解），一定的技能背景（SQL、python），来折腾LLM应用，并不期待有什么特别底层的工程化的输出。这里罗列一下从这次折腾中希望得到的收获以及一些原则：</p>
+<ul>
+<li>希望得到的收获&#x2F;携带的问题<ul>
+<li>不同的事务中如何在效率和准确性间取得平衡？</li>
+<li>LLM的应用带来的用户心智的变化，在UI上应该有怎样的响应</li>
+<li>如何应用LLM时，整体应该分那些环节，不同的环节上又应该有怎样的控制？</li>
+<li>希望能获得某种架构上的认知以及实施时的手感</li>
+</ul>
+</li>
+<li>原则<ul>
+<li>保证数据安全</li>
+<li>不花钱or少花钱</li>
+<li>快速验证不纠结（逐步复杂）</li>
+</ul>
+</li>
+</ul>
+<p>有以下roadmap：</p>
+<ol>
+<li>直接与llm对话</li>
+<li>对话中引入文件（html文件、在线文档、本地文档）和历史对话记录</li>
+<li>对话中引入知识库（关联向量数据库）</li>
+<li>对话中引入数据库（主要是结构化数据库）</li>
+<li>对话中引入其他工具集并构建Agent（判断或任务执行逻辑单一）</li>
+<li>引入longterm memory（外挂记忆区）</li>
+<li>构建multi-Agent，完成复杂任务（判断逻辑或维度较多）</li>
+</ol>
+<h1 id="阶段一（入门）记录"><a href="#阶段一（入门）记录" class="headerlink" title="阶段一（入门）记录"></a>阶段一（入门）记录</h1><p>这一阶段是了解现有框架的特性，可用的工具和简单做一些实践。目前已完成1和1.1。<br>直接上踩坑记录：</p>
+<h3 id="问题一：用什么框架"><a href="#问题一：用什么框架" class="headerlink" title="问题一：用什么框架"></a>问题一：用什么框架</h3><p>之前有按照自己的习惯从最基础开始，于是学了一阵机器学习和深度学习。但后来想清楚一件事：以我可得的资源以及主要能产出的结果看，设计模型和为模型调参都有点遥远，我只需要尽量保持认知不偏，而不需要了解得这样细。于是转而直接考虑llm应用的设计。此时就有了选择开发框架的问题。<br>AI的大势下，行业更新极快，框架也在一直出新。目前主流的是langchain（背靠OpenAI），还有其他有自己场景的框架。<br>最终选择了langchain来实现简单功能和单一agent，主要是因为它在API接入和chain的应用上的优势。后续构建multi-agent时应该会选用autogen，看重它的“人可以在任意环节随时参与”的特性。<br>此外，langchain官方配套的langsmith在调试时很好用，有助与理解在生成答案的过程中，究竟发生了些什么。</p>
+<h3 id="问题二：如何在保证数据安全的同时进行模型能力的接入"><a href="#问题二：如何在保证数据安全的同时进行模型能力的接入" class="headerlink" title="问题二：如何在保证数据安全的同时进行模型能力的接入"></a>问题二：如何在保证数据安全的同时进行模型能力的接入</h3><p>基于之前定的原则，最好的选择是本地化部署开源大模型，所有的服务都在本地跑。而在框架内，模型的能力都是通过接口来进行调用的，这也就涉及API获取的问题。<br>找到两个本地的接口的解决方案：<a target="_blank" rel="noopener" href="https://ollama.com/">Ollama</a>和<a target="_blank" rel="noopener" href="https://lmstudio.ai/">LM Studio</a>。<br>两者都可以基于开源LLM生成API进而在本地调用，不同的是Ollama的接口有自己的规范，而LM Studio则是模拟OpenAI的接口。<br>这一点不同直接带来的影响就是，使用langchain进行基础使用（比如仅引入prompt、RAG）时，Ollama还够用，但构建agent时，Ollama就无法使用了。<br>最终选择了使用LM Studio进行接口的支持。</p>
+<h3 id="问题三：开发环境管理"><a href="#问题三：开发环境管理" class="headerlink" title="问题三：开发环境管理"></a>问题三：开发环境管理</h3><p>服务全部都在本地的话，摆在面前有两个选择：docker和本地虚拟环境。<br>个人是倾向docker的，虽然不熟，但是很喜欢这样打包管理，部署方便的使用哲学。<br>然鹅实际折腾的时候发现，Ollama所需的GPU加速在非Intel芯片的Mac上无法在docker中实现，而起初我也确实期待用Ollama的API，于是在较早的阶段就放弃了使用docker来进行开发的想法。但依然会使用类似的方式来管理本地的一些配置和依赖包。<br>综上，win建议使用docker，MacOS则建议conda构建虚拟环境。</p>
+<h3 id="问题四：添加的文件是如何进入对话的"><a href="#问题四：添加的文件是如何进入对话的" class="headerlink" title="问题四：添加的文件是如何进入对话的"></a>问题四：添加的文件是如何进入对话的</h3><p>这个场景实际是引入一份文件，而用户会对文件内容进行提问。<br>中间的处理过程主要是：</p>
+<ol>
+<li>解析文件并获取文本内容；</li>
+<li>切分文本内容内容切分代入embedding模型进行向量化；</li>
+<li>基于文件、对话历史、新一轮中用户的输入内容，生成prompt，要求llm生成一个新的提问；</li>
+<li>基于文件、对话历史、新一轮中用户输入的内容，生成prompt，要求llm生成对应的回答</li>
+<li>将3、4与对话模型链接起来，得到一个完整的生成最终回答的链</li>
+</ol>
+<h3 id="问题五：图形界面"><a href="#问题五：图形界面" class="headerlink" title="问题五：图形界面"></a>问题五：图形界面</h3><p>找到了不少教程，目前选择<a target="_blank" rel="noopener" href="https://streamlit.io/">streamlit</a>作为前端框架。后续再按需调整。<br><img src="/images/240325.png"></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Revellen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2023 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/AI/"># AI</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/02/26/%E8%AF%BB%E4%B9%A6%E8%AE%B0%E5%BD%95-%E3%80%8A%E5%8D%83%E8%84%91%E6%99%BA%E8%83%BD%E3%80%8B/">关于智能 -《千脑智能》读书笔记</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Revellen 
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
