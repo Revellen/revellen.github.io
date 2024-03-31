@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Revellen">
+
+
+
+
+
+<title>LLM应用折腾笔记（2） | Revellen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Non-Stop</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Non-Stop</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">LLM应用折腾笔记（2）</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Revellen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Apr 01, 2024&nbsp;&nbsp;00:18:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%95%99%E7%A8%8B-%E8%B8%A9%E5%9D%91/">教程&踩坑</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="阶段一及阶段二折腾内容"><a href="#阶段一及阶段二折腾内容" class="headerlink" title="阶段一及阶段二折腾内容"></a>阶段一及阶段二折腾内容</h1><p>week1（24.0318~0324）内容：</p>
+<ul>
+<li>本地llm服务配置（with lm studio &amp; Ollama）</li>
+<li>理解并尝试langchain框架</li>
+<li>chat with webpage</li>
+</ul>
+<p>week2（24.0325~0331）内容：</p>
+<ul>
+<li>chat with local file</li>
+<li>本地embedding文件并持久化（with chromadb）</li>
+<li>理解并尝试autogen框架</li>
+<li>理解memGPT</li>
+<li>使用langchain尝试构建agent with tools</li>
+<li>接入更多大模型（dolphin_Q4_K_M, Qwen_Q4_K_M, llama2-13b）</li>
+<li>agent框架复盘</li>
+</ul>
+<h1 id="阶段二踩坑记录"><a href="#阶段二踩坑记录" class="headerlink" title="阶段二踩坑记录"></a>阶段二踩坑记录</h1><h3 id="autogen框架使用"><a href="#autogen框架使用" class="headerlink" title="autogen框架使用"></a>autogen框架使用</h3><p>autogen框架的核心在于引入了human intervene。需要有个GUI来承接这样的过程（之前github上已有这样的框架），使得agent的对话可见，且用户能够很好地介入。<br>定义了一个计算器function作为agent的工具。对话时询问agent一个较复杂的数学计算问题，使用mistral7b、llama2-13b、mixtral-8x7b，均无法触发该function的调用。由此意识到：agent的实现，核心依赖于LLM对任务的理解，如果理解不到位，很难触发tool的使用和Knowledge的检索。memory的检索可能在某些场景下还好，但长久来说也依然是问题。<span style="background:rgba(240, 200, 0, 0.2)">得考虑是否存在外挂attention驱动的可能性——依据额外设置的attention机制使得大模型对某些信息更加敏锐，并且更容易触发相应工具和知识的调用。</span></p>
+<h3 id="知识管理"><a href="#知识管理" class="headerlink" title="知识管理"></a>知识管理</h3><p>prompt工程比我原先想的要重要一些，因为它的构造影响着LLM，促进它调用工具、检索知识和记忆。而之所以调用知识库和记忆需要在prompt或者Workflow中声明，是因为它不在大模型的脑子里，无论是longterm还是shorterm。<span style="background:rgba(240, 200, 0, 0.2)">但prompt依然无法绕开LLM本身的理解能力问题，也无法为理解能力提供更多支持，就连prompt本身的生效都依赖于LLM的理解能力。</span><br>阶段二只尝试了将本地的file通过embedding生成向量。而这样做的过程带来了一些的值得思考的问题——为了获得更好的检索效果和效率：</p>
+<ul>
+<li>应该构建怎样的索引和知识结构？</li>
+<li>不同类型或主题的原始文件，应该以怎样的方式进行组织和编排？</li>
+<li>项目中，需要如何对数据进行预处理？预处理时又应该设定怎样的pipeline和评价标准？</li>
+<li>知识检索的过程或许存在需要工程化的部分？（例如当需要检索知识时，先通过API调用得到关于知识库中不同类型知识的tag信息，再定向查找对应的表或对应的collection）</li>
+</ul>
+<h3 id="记忆管理"><a href="#记忆管理" class="headerlink" title="记忆管理"></a>记忆管理</h3><p>记忆使得user之于agent是有厚度的，也使得agent之于user是唯一的。<br>agent的记忆是外部挂载的，它和知识库的接入方式没有本质区别（基于数据库和vectorstore），也因此是可移植的。</p>
+<p>为了研究如何管理agent的记忆，我找来memGPT：它将记忆与LLM封装到一起，构建成一个OS。它的特点是构建了名为<span style="background:rgba(3, 135, 102, 0.2)">core memory</span>和<span style="background:rgba(3, 135, 102, 0.2)">archival memory</span>的记忆区：core memory理论上对应了下意识和长期记忆，它一直存在于对话情景中；archival memory则对应更广阔的记忆区，它并不是一直load的状态，需要特别地进行召回和检索。它的API不大优化，因此没有直接上手尝试。但它的构造给了我灵感：</p>
+<ul>
+<li>将LLM和记忆管理封装在一起，确实是所有agent-based系统都需要的部分，也更接近一个OS</li>
+<li>像是人的核心记忆和泛知识一样，区别存储是非常energy efficient的</li>
+<li>如何才能触发由信息刺激到认知的转化呢？而memory又是如何在core和archival中间转化的呢？人的每次回忆都会对原始记忆进行重新加工改写，在构造agent的时候，如何能够在不断的回忆和更新时，既保留历史又保留主干？</li>
+<li>如果像管理知识一样管理记忆，我们该如何做？如果要从记忆中提炼知识，我们又该如何做？</li>
+</ul>
+<h3 id="本地调用多个大模型"><a href="#本地调用多个大模型" class="headerlink" title="本地调用多个大模型"></a>本地调用多个大模型</h3><p>LM studio更新后，支持在本地起多个大模型的服务，更加适合多agent场景，尤其是一主多副的场景。<br>m3pro 36GB的mac可能最多也就是同时跑三个模型。这样的拓给agent编排带来更多选项。</p>
+<h1 id="未来阶段计划"><a href="#未来阶段计划" class="headerlink" title="未来阶段计划"></a>未来阶段计划</h1><ul>
+<li>本地化存储agent聊天记录并实现调用（带有时间戳等自定义的metadata），探索记忆的逻辑分区和相互转换</li>
+<li>本地化存储知识库并实现调用，探索知识管理的pipeline</li>
+<li>定义tool，并让agent成功调用（需要多尝试几个LLM，也需准备一些对应的测试问题）</li>
+<li>接入多模态模型，以及对应的多模态工具</li>
+<li>multi-agent对话的可视化界面</li>
+<li>找特定落地场景，探索场景下的agent落地方案</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Revellen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2023 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/AI/"># AI</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/03/24/post-LLM%E5%BA%94%E7%94%A8%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/">LLM应用折腾笔记（1）</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Revellen 
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
