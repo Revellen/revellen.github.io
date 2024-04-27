@@ -226,24 +226,24 @@
 <h3 id="关于RAG时的chunk-size"><a href="#关于RAG时的chunk-size" class="headerlink" title="关于RAG时的chunk size"></a>关于RAG时的chunk size</h3><p>虽然chatmodel、llm与embedding可以不是同一个厂商的，但实际基于知识库做RAG应用时，为了使最终的召回效果更好，在chunk文件并生成向量时，就应当考虑到embedding、llm和chatmodel的上下文限制。<br>从这个角度讲，随着模型优化上下文长度变长，不仅仅为对话长度带来优化，还为对话的深度带来了优化。</p>
 <h3 id="关于CUI"><a href="#关于CUI" class="headerlink" title="关于CUI"></a>关于CUI</h3><p>玩coze有了个新的启发：对话界面将来会集成所有的查询，在这样的交互逻辑下，用户该如何保存自己的查询记录？以“标签页”为代表的信息页面，在CUI中将如何被兼容？例如说，将对话历史中有关于xxx的，总结并保存到某处，这很适合知识采集或脑暴的过程；再例如说，通过对话，触发在线文档、数据系统的更新同步，也即以LUI为控制台。<br>无缝可得的机器的智慧，无法取代人脑来对知识进行加工和理解——毕竟人并不为机器而活——如何将通过对话获取的零散的信息沉淀下来，帮助人们构建和维护自己的知识体系，也是个很有意思的方向。</p>
 <p>对话CUI——快、明确、启发、单点——对应查询、执行场景<br>页面GUI——结构化、完整、深入——对应查看场景，尤其是常见意义上适合通过可视化图表展示的场景<br>以这样的逻辑来设计融合了AI的移动端和web端的交互界面。</p>
-<h3 id="关于高精度要求场景的RAG"><a href="#关于高精度要求场景的RAG" class="headerlink" title="关于高精度要求场景的RAG"></a>关于高精度要求场景的RAG</h3><p>这周接触了一个新的场景：在agent的流程里要求准确检索，并按固定格式返回。主要用例：用户会提出需求，agent需要依据用户的需求从知识库中检索出符合要求的对象，并进一步提取这个对象的某个属性值，这个属性值在业务场景中准确度要求较高，不可以偏移。<br>且由于一些限制，这样的workflow暂时仅能够通过prompt实现，实现方式是few-shot+workflow instruction。<br>整个过程暴露出来很多问题：</p>
+<h3 id="关于高精度要求场景的RAG"><a href="#关于高精度要求场景的RAG" class="headerlink" title="关于高精度要求场景的RAG"></a>关于高精度要求场景的RAG</h3><p>这周接触了一个新的场景：在agent的流程里要求准确检索，并按固定格式返回。主要用例：用户会提出需求，agent需要依据用户的需求从知识库中检索出符合要求的对象，并进一步提取这个对象的某个属性值，这个属性值的准确性在业务场景中要求较高，不可以偏移。<br>且由于一些限制，这样的workflow暂时仅能够通过prompt实现，实现方式是few-shot+workflow instruction。<br>整个过程暴露出来很多问题：</p>
 <ol>
 <li>无论在什么位置、以什么方式、重复多少次声明，workflow内容依然有暴露风险</li>
 <li>知识库检索并不会被及时唤起，这就导致过程容易出错，给模型自行编造留下空间</li>
 <li>无论怎么声明，模型依然有概率编造，或干脆不回答，业务场景中这些情形都会成为必须测试出并且进行针对性处理的事情</li>
 </ol>
-<p>就目前定位出来的问题点，有以下判断和进一步打算：</p>
+<p>就目前定位出来的问题点，有以下判断和优化选项：</p>
 <ol>
-<li>拆分workflow和executor，workflow作为外挂，当做tool来挂载</li>
-<li>对知识库检索的结果进行判断并增加重新唤起逻辑</li>
-<li>对知识进行清洗、组织和编排，建立图谱，作为数据检索精度要求高的场景的支撑</li>
+<li>拆分executor和responder，不在直接面向用户生成答案的agent的prompt中声明workflow，将workflow工程化为一个tool；或采用multi-agent框架，拆分执行和服务agent，还可引入监工</li>
+<li>对知识库检索的结果（检索行为和检索结果）进行判断并增加重新唤起逻辑</li>
+<li>对知识进行清洗、组织和编排，建立实体的知识图谱，作为数据检索精度要求高的场景的支撑</li>
 </ol>
 <p>如何提高RAG在准确度要求较高的场景的表现呢？</p>
 <ol>
-<li>上面提到的构建严密的知识图谱，加上RAG，是一个逻辑上可行的路径，但可以预见对数据集要求极高且治理成本较高</li>
-<li>混合检索：也即向量检索+其他类型的检索，例如向量+关键词就是通过建立向量索引和关键词索引，当用户输入时，分别通过两种方式进行检索，之后对结果进行重排</li>
-<li>子查询策略： 采用树状查询或按序查询小块信息的不同策略，适用于多种场景。LlamaIndex 提供的子问题查询引擎允许将大的查询任务拆分成多个小问题，分别利用不同的数据源进行解答</li>
-<li>假设性文档嵌入技术 (HyDE)：通过生成查询的假设性回答并嵌入，来检索与这个假设回答相似的文档，而不是直接使用查询本身，以此来优化检索效果<br>刚好在做RAG相关的研究，打算先基于一般的关系数据库和LlamaIndex尝试一下，如果必要的话，再改成知识图谱。<br>还有另一个角度：是否可以通过产品设计或额外的内容引入，减少对精度的要求？</li>
+<li>上面提到的构建严密的知识图谱，加上RAG，是一个逻辑上可行的路径，但可以预见对数据集要求极高</li>
+<li>混合检索：也即向量检索+其他类型的检索，例如建立向量索引和关键词索引，当用户输入时，分别通过两种方式进行检索，之后对结果进行重排</li>
+<li>子查询策略： 也即基于问题生成子问题，采用树状查询或按序查询小块信息的不同策略。（LlamaIndex 提供的子问题查询引擎允许将大的查询任务拆分成多个小问题，分别利用不同的数据源进行解答）</li>
+<li>假设性文档嵌入技术 (HyDE)：通过生成查询的假设性回答并嵌入，来检索与这个假设回答相似的文档，而不是直接使用查询本身，以此来优化检索效果<br>刚好最近在做RAG相关的研究，打算先基于一般的关系数据库和LlamaIndex尝试一下，如果必要的话，再改成知识图谱。<br>还有另一个角度：通过优化整体业务场景逻辑，减少对精度的要求<br>精度上的表现和token消耗上的平衡，是很难找到的，实际使用时可以依据节点功能再做细分，划分多个子模块，让减少单点消耗的问题变成求整体均衡的问题。</li>
 </ol>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>之前一直以为temperature所控制的严谨性是和人一样的思维逻辑的严谨性，真实使用场景下才意识到它其实是对自己已有的知识的遵从度，所以与其说是严谨，不如说是固执。（doge）<br>控制token消耗，其根本逻辑应该是知道在什么环节必须得使用模型能力，以及在什么情况下定制的ROI显著低于使用模型能力的ROI。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://cloud.baidu.com/article/3299793">深入探索知识图谱：Graph RAG的七种查询策略</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/625481187/answer/3279041129">大模型检索增强生成（RAG）有哪些好用的技巧？ - 瀚海方舟的回答 - 知乎</a><br><a target="_blank" rel="noopener" href="https://docs.dify.ai/v/zh-hans/learn-more/extended-reading/retrieval-augment/hybrid-search">混合检索-Dify</a><br><a target="_blank" rel="noopener" href="https://towardsdatascience.com/improving-retrieval-performance-in-rag-pipelines-with-hybrid-search-c75203c2f2f5">Improving Retrieval Performance in RAG Pipelines with Hybrid Search</a><br><a target="_blank" rel="noopener" href="https://www.promptingguide.ai/zh/research/rag">rag for llms</a></p>
