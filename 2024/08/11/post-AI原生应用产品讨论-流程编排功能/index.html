@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Revellen">
+
+
+
+
+
+<title>AI原生应用产品讨论-流程编排功能 | Revellen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Non-Stop</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Non-Stop</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">AI原生应用产品讨论-流程编排功能</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Revellen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">8月 11, 2024&nbsp;&nbsp;22:38:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/AI-related/">AI_related</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>流程编排功能，主要指的是提供低码拖拽流程编排页面，能够支持工作流创建和应用的平台。从实现逻辑上，可以将它们分为Agent逻辑和工作流逻辑：前者一般都基于Agent开发框架，编排的是资源和属性值，要求使用者对底层框架有一定了解；后者则是类似BPMN的逻辑，定义了节点类型，编排的是节点的执行顺序，较为直观。<br>这里将对比的产品如下，同时按照上面的逻辑进行了分类：</p>
+<ul>
+<li>工作流逻辑：<ul>
+<li><a target="_blank" rel="noopener" href="https://www.coze.cn/space/7333552885222998051/bot">coze</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.dify.ai/v/zh-hans">dify</a></li>
+<li><a target="_blank" rel="noopener" href="https://thunderbit.com/">thunderbit</a></li>
+</ul>
+</li>
+<li>Agent逻辑：<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/FlowiseAI/Flowise">flowise</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/langflow-ai/langflow">langflow</a></li>
+<li><a target="_blank" rel="noopener" href="https://agents.baidu.com/center">百度文心智能体平台</a></li>
+<li><a target="_blank" rel="noopener" href="https://doc.agentscope.io/en/tutorial/203-parser.html">阿里AgentScope</a></li>
+</ul>
+</li>
+</ul>
+<p>Notice：以上列出的流程编排都偏文本加工的逻辑流程，AI原生还有半壁江山是图片、影像生成的工作流，例如comfyUI等等，但由于硬件设备限制，暂时没有条件本地上手体验，后面有机会再讨论。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="coze"><a href="#coze" class="headerlink" title="coze"></a>coze</h3><p><img src="/images/240811-01.png"><br><img src="/images/240811-02.png"><br><img src="/images/240811-03.png"></p>
+<p>coze中有两个功能模块涉及流程编排，一是bot设计，一是工作流设计。bot设计时，选择多Agent模式，即可切换到流程配置页面，此时流程的每个节点都是一个Agent，通过明确适用场景，处于上游的Agent自行决定对话应该分发至哪一个下游Agent，此外还可以添加全局的跳转条件，用于切换应答节点。而工作流设计则是独立于Agent设计之外的模块。coze的工作流分为两种，文本工作流和图像加工流，除节点类型有区别外，编排逻辑相同。</p>
+<p>功能特性：</p>
+<ul>
+<li>支持并行分支</li>
+<li>支持变量传递和异常情况默认值设定</li>
+<li><span style="background:rgba(240, 200, 0, 0.2)">单一节点内支持迭代批量处理</span></li>
+<li>支持嵌套文本工作流及图像工作流</li>
+<li>支持包括代码执行器、知识库检索、读写数据库、文本拼接、选择器等常用的结构化节点</li>
+<li><span style="background:rgba(240, 200, 0, 0.2)">定义完成的工作流可被Agent使用</span></li>
+</ul>
+<h3 id="dify"><a href="#dify" class="headerlink" title="dify"></a>dify</h3><p><img src="/images/240811-04.png"><br><img src="/images/240811-05.png"><br><img src="/images/240811-06.png"><br><img src="/images/240811-21.png"><br>dify作为（我心目中的）开源Agent搭建平台扛把子，工作流编排虽然相较于coze欠缺一些，但整体可用性还是较高。</p>
+<p>功能特性：</p>
+<ul>
+<li><span style="background:rgba(240, 200, 0, 0.2)">工作流可被Agent调用，也可通过API单独调用</span></li>
+<li>提供工作流调用统计及log查看，可查看具体节点的输入及输出</li>
+<li>支持分类器、代码执行器、参数抽取转换等常用结构化节点</li>
+<li>支持将tool或http请求添加为节点</li>
+<li>不支持并行分支（单一加工节点不支持多个子节点）</li>
+</ul>
+<h3 id="thunderbit"><a href="#thunderbit" class="headerlink" title="thunderbit"></a>thunderbit</h3><p><img src="/images/240811-07.png"><br><img src="/images/240811-08.png"><br><img src="/images/240811-09.png"><br>thunderbit是这次对比的产品中唯一一个浏览器插件。它的主要功能是自动化指令和模型对话，而流程编排功能是其自动化指令中的组成部分。thunderbit的自动化指令多数用于数据采集和转换。</p>
+<p>功能特性：</p>
+<ul>
+<li><span style="background:rgba(240, 200, 0, 0.2)">自带多种常用平台的节点配置集，支持快速定义写入、读取操作</span></li>
+<li>AI能力节点提供多种场景化的AI配置，例如翻译、总结、转写、文字语音互转等</li>
+<li>支持条件分支和循环分支</li>
+</ul>
+<h3 id="flowise"><a href="#flowise" class="headerlink" title="flowise"></a>flowise</h3><p><img src="/images/240811-10.png"><br><img src="/images/240811-11.png"><br><img src="/images/240811-12.png"><br><img src="/images/240811-13.png"><br>flowise与后面即将介绍的几个产品一样，它的配置逻辑，并非常见的工作流编排逻辑，而是Agent设计逻辑：每一个配置卡片更与其说是节点不如说是组件，不同的组件有自己的输入和输出接口，多个组件相互连接组成一个可执行单元（Runnable），在多个可执行单元之间，通过设定转移条件，构建出流程。<span style="background:rgba(240, 200, 0, 0.2)">如果说工作流逻辑下的流程编排是由业务流程决定的，Agent逻辑下的流程编排则是由Agent或者LLM应用开发框架决定的</span>。</p>
+<p>功能特性：</p>
+<ul>
+<li>适配llamaindex、langchain、babyGPT、AutoAGI等LLM应用设计框架</li>
+<li>支持设定条件分支、JS function以及过程变量</li>
+<li>支持将编排结果（对话界面透出）嵌入网页，或通过API调用</li>
+</ul>
+<h3 id="langflow"><a href="#langflow" class="headerlink" title="langflow"></a>langflow</h3><p><img src="/images/240811-14.png"><br><img src="/images/240811-15.png"><br><img src="/images/240811-16.png"><br><img src="/images/240811-17.png"><br>langflow是一个面向多智能体和RAG开发的可视化框架，内置多类组件，基于python开发，完全可定制。很适合有一定代码能力的用户用来快速验证想法。</p>
+<p>功能特性：</p>
+<ul>
+<li>内置多种组件，包括retriever、文件加载、分词器、代码执行等等，并且支持自定义扩展</li>
+<li>支持代码导入导出</li>
+<li>支持变量引用和传递</li>
+</ul>
+<h3 id="百度文心智能体平台"><a href="#百度文心智能体平台" class="headerlink" title="百度文心智能体平台"></a>百度文心智能体平台</h3><p><img src="/images/240811-18.png"><br><img src="/images/240811-19.png"><br>与flowise类似，百度文心智能体平台，是基于百度自己的智能体构建框架实现的低码工具。</p>
+<h3 id="阿里AgentScope"><a href="#阿里AgentScope" class="headerlink" title="阿里AgentScope"></a>阿里AgentScope</h3><p><img src="/images/240811-20.png"></p>
+<p>相比与前面的平台，AgentScope则显得粗糙很多。但它的设计逻辑和langflow相似，都是面向开发者的LLM应用平台，更准确地说，它是一个面向开发者的多智能体设计平台。官方对于其workflow模块的介绍是：workflow表示智能体执行和智能体之间的消息交换的有序序列，类似于TensorFlow中的计算图， 但其并不一定是DAG结构。</p>
+<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>适宜对象</th>
+<th>适宜场景</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>coze</td>
+<td>个人、小型企业</td>
+<td>Agent应用设计、LLM应用想法验证</td>
+<td>coze在产品设计逻辑和功能健全性方面，无论相比与开源还是闭源产品，都是非常亮眼的，易用性极高，设计功能较为健全，这就使得它非常适合用来做一些精巧的LLM应用。但目前为止，它所开放的接口和监控内容都较为欠缺，除了对话API外，没有面向开发者提供合适的资源和运行监控工具或页面。</td>
+</tr>
+<tr>
+<td>dify</td>
+<td>小型企业</td>
+<td>单Agent设计及服务搭建</td>
+<td>dify作为开源社区一款明星Agent设计平台产品，无论Agent设计、工作流编排、RAG等产品能力的健全度，还是从程序接口、用量监控等开发场景支持度，都相当不错。在Agent场景下，dify能够比较好的落地支持。</td>
+</tr>
+<tr>
+<td>thunderbit</td>
+<td>个人</td>
+<td>日常工作辅助</td>
+<td>thunderbit是自动化和模型对话的结合体，其流程编排更多时候是将多个人工操作合并为一次点击，而因为其插件属性，即使它能够被bot唤起，用户也依然会倾向自己点击。</td>
+</tr>
+<tr>
+<td>flowise</td>
+<td>产品经理、开发</td>
+<td>LLM应用设计想法验证</td>
+<td>flowise将多个LLM应用开发框架封装起来，整合到低码页面，某种程度上拉低了使用成本。但在实际生产环境中，任何开发框架的使用都是要认真考虑的，相比于框架带来的有限的易用性，灵活性和能够观测到底层组件的状态，对开发者来说更加重要。这就决定了flowise这样的产品多数时候适合用来做prototype。</td>
+</tr>
+<tr>
+<td>langflow</td>
+<td>产品经理、开发</td>
+<td>LLm应用设计想法验证</td>
+<td>langflow虽然与flowise类似，整合了多种框架，但其逻辑是“组件化”，也就是说，用户可以灵活地组件化地使用不同框架封装的逻辑节点，而非需要了解并遵从某一框架。此外，用户还可以自行定义组件。这样的产品逻辑就比较适合在创新组织内部使用，用来快速验证想法，也可以另外进行优化，使得搭建结果可以直接应用于生产环境。</td>
+</tr>
+<tr>
+<td>百度文心智能体平台</td>
+<td>业务简单的企业</td>
+<td>单Agent设计</td>
+<td>相比于同样闭源的coze以及前面一众开源Agent设计平台，百度的智能体平台提供的能力着实少得可怜，只有基础的知识检索、逻辑分流和搜索插件，这些能力对应业务简单的场景可能是够用的。</td>
+</tr>
+<tr>
+<td>阿里AgentScope</td>
+<td>开发</td>
+<td>LLM应用设计想法验证</td>
+<td>国内开源的多智能体设计平台并不多，而阿里的agentscope在设计逻辑上更偏代码逻辑（例如全局模型config，或是flow图），而阿里的Agent设计框架也在同步开源，可以使用它来验证想法。</td>
+</tr>
+</tbody></table>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p><span style="background:rgba(240, 200, 0, 0.2)">流程编排本质上是图和模块化代码的应用，其目的是为了按照一定预设的逻辑对数据进行加工和转换。</span>至于图本身是否需要支持复杂循环、并联，则是基于业务场景和技术积累进行选择的。<br>同时作为产品经理和一般用户的我，对流程编排模块关注的问题是相似的：它能够应用于哪些使用场景？这些场景下，它支撑得如何？<br>我们可以灵活地看待流程使用方式，它可以孤立存在和执行，例如传统的实时或离线定时任务；也可以被用户直接使用，像是手机里的shortcut；也可以被agent使用，等等。如果使用场景丰富而多变，设计流程编排功能时，我们在设计时就需要足够聚焦，也即关注流程本身——它的输入、输出、加工节点和过程控制：</p>
+<ul>
+<li>输入：初始状态下，流程可以或者需要怎样的输入内容。开始节点需要能够对不同类型的输入有有效的解析和处理。</li>
+<li>输出：输出时，流程可以或必须输出怎样的内容，这里包括信息内容和信息格式。结束节点需要能够面向后序应用地进行输出。</li>
+<li>加工节点：接收输入之后，进行输出之前，需要对数据进行的解析、转换、计算等操作，都在加工节点内进行，包括LLM在内的所有数据处理方法，都可以模块化为加工节点。</li>
+<li>过程控制：这里的过程控制，主要指的是条件分支、循环执行和异常处理。</li>
+</ul>
+<p>而在以上四点之外，进行对整个流程状态的监控，监控内容应当包括各个节点的输入、输出、状态，整体的输入、输出、状态，以及消耗。<br>产品化的流程编排，就是对这五个方面进行定向优化：</p>
+<ul>
+<li>注重易用性，则可以针对一些常用场景定义专门的加工或解析节点，就像coze、dify中的http请求节点、jsonfy节点等</li>
+<li>注重高并发，则可以允许节点间并联，并针对并联场景进行底层优化</li>
+<li>注重灵活性，则可以不对节点进行过度封装</li>
+</ul>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://top.aibase.com/tool/scade-pro">https://top.aibase.com/tool/scade-pro</a><br><a target="_blank" rel="noopener" href="https://www.mlblocks.com/">https://www.mlblocks.com/</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Revellen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2023 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/AI/"># AI</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/07/21/post-LLM%E5%BA%94%E7%94%A8%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0%EF%BC%884%EF%BC%89-%E6%96%87%E6%97%85%E9%97%AE%E7%AD%94%E5%8A%A9%E6%89%8B%E5%A4%8D%E7%9B%98/">LLM应用折腾笔记（4）--文旅问答助手复盘</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Revellen 
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
